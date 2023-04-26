@@ -27,23 +27,22 @@ client: $(C_SRC) $(HEADER_FILE)
 	$(CC) $(CFLAGS) $(C_SRC) printf/libftprintf.a -o client
 
 server: $(S_SRC) $(HEADER_FILE)
-	@make -C printf
 	$(CC) $(CFLAGS) $(S_SRC) printf/libftprintf.a -o server
 
-client_bonus:
+client_bonus: $(CB_SRC) $(HEADER_FILE)
 	@make -C printf
 	$(CC) $(CFLAGS) $(CB_SRC) printf/libftprintf.a -o client_bonus
 
-server_bonus:
-	@make -C printf
+server_bonus: $(SB_SRC) $(HEADER_FILE)
 	$(CC) $(CFLAGS) $(SB_SRC) printf/libftprintf.a -o server_bonus
 
 clean:
 	@make clean -C printf
-	rm -f client server
-	rm -f client_bonus server_bonus
+	rm -f *.o
 
 fclean: clean
 	@make fclean -C printf
+	rm -f client server
+	rm -f client_bonus server_bonus
 
 re: fclean all
